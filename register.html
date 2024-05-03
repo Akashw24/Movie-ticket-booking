@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estore</title>
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+   
+
+</head>
+
+<body>
+    <section class="vh-100 bg-image"
+    style="background-image: url('/static/assets/images/signup.jpg');">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="home" style="text-decoration: none;">Home</a>
+            </div>
+            <div class="col-md-4 shadow mt-5 p-4 mx-auto text-white">
+                <h1>Registration</h1>
+                {% if errmsg %}
+                <div class="alert alert-danger">
+                    {{errmsg}}
+                </div>
+                {% endif %}
+
+                <form method="POST" action="/register">
+                    {% csrf_token %} <!-- for post method csrf token required -->
+                    <div class="mb-3">
+                        <label for="input1" class="form-label text-white">Username: </label>
+                        <input type="email" class="form-control" id="input1" name="uname"
+                            placeholder="enter your username ">
+                    </div>
+                    <div class="mb-3">
+                        <label for="input2" class="form-label text-white">Password: </label>
+                        <input type="password" class="form-control" id="input2" name="upass"
+                            placeholder="enter your password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="input3" class="form-label text-white">confirm passoword: </label>
+                        <input type="password" class="form-control" id="input3" name="ucpass">
+                    </div>
+                    <div class="mb-3">
+                        <input type="submit" class="btn btn-danger" id="input1" value="Register">
+                        Already user?<a href="/login" style="text-decoration: none;">Login</a>
+                    </div>
+                    {% if success %}
+                    <div class="alert alert-success">
+                        {{success}}
+                    </div>
+                    {% endif %}
+            </div>
+            </form>
+            <script src="{% static 'assets/js/bootstrap.min.js' %} "></script>
+        </div>
+    </div>
+    </section>
+</body>
+
+</html>
+
